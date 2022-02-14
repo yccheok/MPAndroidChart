@@ -84,6 +84,11 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
         int numericValue2 = Character.getNumericValue(r.charAt(r.length() - 2));
         int combined = Integer.valueOf(numericValue2 + "" + numericValue1);
 
+        final int index = combined / 3;
+        if (index < 0 || index >= SUFFIX.length) {
+            return r;
+        }
+
         r = r.replaceAll("E[0-9][0-9]", SUFFIX[combined / 3]);
 
         while (r.length() > MAX_LENGTH || r.matches("[0-9]+\\.[a-z]")) {
