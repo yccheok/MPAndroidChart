@@ -98,6 +98,33 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
         return r;
     }
 
+    // This might be a better code. But, we do not use it at the moment because it is not time
+    // tested yet.
+    //public String makePretty(double number) {
+    //
+    //    String r = mFormat.format(number);
+    //
+    //    String[] parts = r.split("E");
+    //
+    //    if (parts.length != 2) {
+    //        return r;
+    //    }
+    //
+    //    int combined = 0;
+    //
+    //    try {
+    //        combined = Integer.valueOf(parts[1]);
+    //    } catch (NumberFormatException e) {
+    //        return r;
+    //    }
+    //
+    //    if (combined < 0 || (combined / 3) >= SUFFIX.length) {
+    //        return r;
+    //    }
+    //
+    //    return parts[0] + SUFFIX[combined / 3];
+    //}
+
     public int getDecimalDigits() {
         return 0;
     }
