@@ -89,7 +89,7 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
             return r;
         }
 
-        r = r.replaceAll("E[0-9][0-9]", SUFFIX[combined / 3]);
+        r = r.replaceAll("E[0-9][0-9]", SUFFIX[index]);
 
         while (r.length() > MAX_LENGTH || r.matches("[0-9]+\\.[a-z]")) {
             r = r.substring(0, r.length() - 2) + r.substring(r.length() - 1);
