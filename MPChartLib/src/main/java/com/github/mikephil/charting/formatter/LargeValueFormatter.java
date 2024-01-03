@@ -21,7 +21,7 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
 {
 
     private static String[] SUFFIX = new String[]{
-            "", "k", "m", "b", "t"
+            "", "k", "m", "b", "t", "q"
     };
     private static final int MAX_LENGTH = 5;
     private DecimalFormat mFormat;
@@ -84,7 +84,13 @@ public class LargeValueFormatter implements IValueFormatter, IAxisValueFormatter
         int numericValue2 = Character.getNumericValue(r.charAt(r.length() - 2));
         int combined = Integer.valueOf(numericValue2 + "" + numericValue1);
 
-        r = r.replaceAll("E[0-9][0-9]", SUFFIX[combined / 3]);
+        final int index = combined / 3;
+        
+        if (index >= SUFFIX.length) {
+            return Double.toString(number);
+        }
+
+        r = r.replaceAll("E[0-9][0-9]", SUFFIX[index]);
 
         while (r.length() > MAX_LENGTH || r.matches("[0-9]+\\.[a-z]")) {
             r = r.substring(0, r.length() - 2) + r.substring(r.length() - 1);
